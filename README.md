@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="#00454A"> <!-- Solid background color -->
+    android:background="#00454A"> 
 
     <LinearLayout
         android:layout_width="match_parent"
