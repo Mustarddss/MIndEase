@@ -2,10 +2,12 @@ package com.example.mindease;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,33 +20,100 @@ public class SignUp extends AppCompatActivity {
 
         // Back Arrow ImageView
         ImageView backArrow = findViewById(R.id.backArrow);
-        backArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Go back to SignInActivity
-                onBackPressed(); // or use explicit Intent if necessary
-            }
-        });
+        backArrow.setOnClickListener(v -> onBackPressed());
 
         // Terms CheckBox
         CheckBox termsCheckBox = findViewById(R.id.termsCheckBox);
-        termsCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Toggle the checkbox state (no need for manual check/uncheck; Android handles it)
-            }
+        termsCheckBox.setOnClickListener(v -> {
+            // Toggle the checkbox state (no need for manual check/uncheck; Android handles it)
         });
+
+        // EditText Fields
+        EditText usernameEditText = findViewById(R.id.usernameEditText);
+        EditText firstNameEditText = findViewById(R.id.firstNameEditText);
+        EditText lastNameEditText = findViewById(R.id.lastNameEditText);
+        EditText emailEditText = findViewById(R.id.emailEditText);
+        EditText mobileEditText = findViewById(R.id.mobileEditText);
+        EditText passwordEditText = findViewById(R.id.passwordEditText);
+        EditText confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
 
         // Continue Button
         Button continueButton = findViewById(R.id.continueButton);
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to the next interface
-                // Uncomment and replace "NextActivity.class" with the actual activity or interface
-                // Intent intent = new Intent(SignUpActivity.this, NextActivity.class);
-                // startActivity(intent);
+        continueButton.setOnClickListener(v -> {
+            if (isValidInput(usernameEditText, firstNameEditText, lastNameEditText,
+                    emailEditText, mobileEditText, passwordEditText,
+                    confirmPasswordEditText)) {
+                // Proceed to ChooseID after validation
+                Intent intent = new Intent(SignUp.this, ChooseID.class);
+                startActivity(intent);
             }
         });
+    }
+
+    private boolean isValidInput(EditText username, EditText firstName, EditText lastName,
+                                 EditText email, EditText mobile, EditText password,
+                                 EditText confirmPassword) {
+        // Validate Username
+        if (TextUtils.isEmpty(username.getText().toString())) {
+            username.setError("Username is required");
+            return false;
+        }
+
+        // Validate First Name
+        if (TextUtils.isEmpty(firstName.getText().toString())) {
+            firstName.setError("First name is required");
+            return false;
+        }
+
+        // Validate Last Name
+        if (TextUtils.isEmpty(lastName.getText().toString())) {
+            lastName.setError("Last name is required");
+            return false;
+        }
+
+        // Validate Email
+        if (TextUtils.isEmpty(email.getText().toString())) {
+            email.setError("Email address is required");
+            return false;
+        } else if (!email.getText().toString().contains("@")) {
+            email.setError("Invalid email address");
+            return false;
+        }
+
+        // Validate Mobile Number
+        if (TextUtils.isEmpty(mobile.getText().toString())) {
+            mobile.setError("Mobile number is required");
+            return false;
+        } else if (mobile.getText().toString().length() < 10) {
+            mobile.setError("Mobile number should be at least 10 digits");
+            return false;
+        }
+
+        // Validate Password
+        if (TextUtils.isEmpty(password.getText().toString())) {
+            password.setError("Password is required");
+            return false;
+        } else if (password.getText().toString().length() < 6) {
+            password.setError("Password must be at least 6 characters long");
+            return false;
+        }
+
+        // Validate Confirm Password
+        if (TextUtils.isEmpty(confirmPassword.getText().toString())) {
+            confirmPassword.setError("Please confirm your password");
+            return false;
+        } else if (!confirmPassword.getText().toString().equals(password.getText().toString())) {
+            confirmPassword.setError("Passwords do not match");
+            return false;
+        }
+
+        // Validate Terms Checkbox
+        CheckBox termsCheckBox = findViewById(R.id.termsCheckBox);
+        if (!termsCheckBox.isChecked()) {
+            Toast.makeText(SignUp.this, "Please accept the terms and conditions", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }
