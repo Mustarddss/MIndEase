@@ -1,0 +1,102 @@
+package com.example.mindease;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize dropdown options
+        String[] ageGroups = {"18-24", "25-34", "35-44", "45-54", "55+"};
+        String[] genders = {"Male", "Female", "Non-binary", "Prefer not to say"};
+        String[] languages = {"English", "Spanish", "French", "Mandarin", "Other"};
+        String[] therapistGenders = {"No preference", "Male", "Female"};
+        String[] mentalHealthConcerns = {"Anxiety", "Depression", "Stress", "Relationship issues", "Other"};
+        String[] severityLevels = {"Mild", "Moderate", "Severe"};
+        String[] therapistConsulted = {"Yes", "No"};
+        String[] supportTypes = {"Individual sessions", "Group therapy", "Self-help resources"};
+        String[] sessionFrequencies = {"Weekly", "Bi-weekly", "Monthly"};
+        String[] availabilityTimes = {"Morning", "Afternoon", "Evening", "Weekends"};
+        String[] groupSessionInterest = {"Yes", "No"};
+        String[] groupTopics = {"Stress management", "Relationship support", "Career guidance", "Parenting", "Other"};
+
+        // Setup dropdowns
+        setupDropdown(R.id.autoCompleteAgeGroup, ageGroups);
+        setupDropdown(R.id.autoCompleteGender, genders);
+        setupDropdown(R.id.autoCompleteLanguage, languages);
+        setupDropdown(R.id.autoCompleteTherapistGender, therapistGenders);
+        setupDropdown(R.id.autoCompleteMentalHealthConcern, mentalHealthConcerns);
+        setupDropdown(R.id.autoCompleteSevereMentalHealth, severityLevels);
+        setupDropdown(R.id.autoCompleteTherapistConsult, therapistConsulted);
+        setupDropdown(R.id.autoCompleteTypeSupport, supportTypes);
+        setupDropdown(R.id.autoCompleteSessionsAttended, sessionFrequencies);
+        setupDropdown(R.id.autoCompleteMostAvailable, availabilityTimes);
+        setupDropdown(R.id.autoCompleteInterestJoining, groupSessionInterest);
+        setupDropdown(R.id.autoCompleteTopicsInterest, groupTopics);
+
+        // Handle Continue button click
+        Button continueButton = findViewById(R.id.button_continue);
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Retrieve selected answers
+                String ageGroup = getDropdownValue(R.id.autoCompleteAgeGroup);
+                String gender = getDropdownValue(R.id.autoCompleteGender);
+                String language = getDropdownValue(R.id.autoCompleteLanguage);
+                String therapistGender = getDropdownValue(R.id.autoCompleteTherapistGender);
+                String mentalHealthConcern = getDropdownValue(R.id.autoCompleteMentalHealthConcern);
+                String severity = getDropdownValue(R.id.autoCompleteSevereMentalHealth);
+                String consultedTherapist = getDropdownValue(R.id.autoCompleteTherapistConsult);
+                String supportType = getDropdownValue(R.id.autoCompleteTypeSupport);
+                String sessionFrequency = getDropdownValue(R.id.autoCompleteSessionsAttended);
+                String availability = getDropdownValue(R.id.autoCompleteMostAvailable);
+                String groupInterest = getDropdownValue(R.id.autoCompleteInterestJoining);
+                String groupTopics = getDropdownValue(R.id.autoCompleteTopicsInterest);
+
+                // Retrieve open-ended answer
+                EditText goalsEditText = findViewById(R.id.editTextGoals);
+                String therapyGoals = goalsEditText.getText().toString();
+
+                // Display answers (for demonstration purposes)
+                String message = "Age Group: " + ageGroup + "\n" +
+                        "Gender: " + gender + "\n" +
+                        "Language: " + language + "\n" +
+                        "Therapist Gender: " + therapistGender + "\n" +
+                        "Mental Health Concern: " + mentalHealthConcern + "\n" +
+                        "Severity: " + severity + "\n" +
+                        "Consulted Therapist: " + consultedTherapist + "\n" +
+                        "Support Type: " + supportType + "\n" +
+                        "Session Frequency: " + sessionFrequency + "\n" +
+                        "Availability: " + availability + "\n" +
+                        "Group Interest: " + groupInterest + "\n" +
+                        "Group Topics: " + groupTopics + "\n" +
+                        "Therapy Goals: " + therapyGoals;
+
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    // Helper method to setup a dropdown menu
+    private void setupDropdown(int viewId, String[] options) {
+        AutoCompleteTextView dropdown = findViewById(viewId);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, options);
+        dropdown.setAdapter(adapter);
+    }
+
+    // Helper method to get the selected value from a dropdown
+    private String getDropdownValue(int viewId) {
+        AutoCompleteTextView dropdown = findViewById(viewId);
+        return dropdown.getText().toString();
+    }
+}
