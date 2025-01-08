@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:padding="20dp">
 
+        <!-- Logo Image -->
         <ImageView
             android:id="@+id/logoImageView"
             android:layout_width="150dp"
@@ -19,7 +20,7 @@
             android:layout_marginTop="60dp"
             android:src="@drawable/logo" />
 
-
+        <!-- Title Text -->
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
@@ -29,22 +30,22 @@
             android:layout_marginTop="20dp"
             android:text="MIND EASE"
             android:textSize="24sp"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
-
+        <!-- Email Input -->
         <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@id/titleTextView"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:hint="EMAIL"
             android:background="@android:drawable/edit_text"
-            android:padding="10dp"
+            android:padding="12dp"
             android:inputType="textEmailAddress" />
 
-
+        <!-- Password Input -->
         <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
@@ -53,34 +54,46 @@
             android:layout_marginTop="20dp"
             android:hint="PASSWORD"
             android:background="@android:drawable/edit_text"
-            android:padding="10dp"
+            android:padding="12dp"
             android:inputType="textPassword" />
 
+        <!-- Sign In Button -->
+        <Button
+            android:id="@+id/signInButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/passwordEditText"
+            android:layout_marginTop="20dp"
+            android:text="SIGN IN"
+            android:background="#FF5722"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
+        <!-- Forgot Password Text -->
+        <TextView
+            android:id="@+id/forgotPasswordTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/signInButton"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:text="Forgot password?"
+            android:textColor="#555555"
+            android:textSize="12sp" />
+
+        <!-- Login as Therapist -->
         <TextView
             android:id="@+id/therapistLoginTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/passwordEditText"
+            android:layout_below="@id/signInButton"
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp"
             android:text="LOGIN AS THERAPIST"
             android:textColor="#555555"
             android:textSize="12sp" />
 
-
-        <TextView
-            android:id="@+id/forgotPasswordTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/passwordEditText"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:text="forgot password?"
-            android:textColor="#555555"
-            android:textSize="12sp" />
-
-
+        <!-- Sign Up Text -->
         <TextView
             android:id="@+id/signupTextView"
             android:layout_width="wrap_content"
@@ -88,11 +101,11 @@
             android:layout_below="@id/forgotPasswordTextView"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
-            android:text="Don't have account? SIGN UP NOW"
+            android:text="Don't have an account? SIGN UP NOW"
             android:textSize="14sp"
             android:textColor="#0000FF" />
 
-
+        <!-- Social Buttons Layout -->
         <LinearLayout
             android:id="@+id/socialButtonsLayout"
             android:layout_width="wrap_content"
@@ -102,26 +115,27 @@
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
-
+            <!-- Google Login Button -->
             <ImageView
                 android:id="@+id/googleLoginImageView"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/facebook"
+                android:src="@drawable/google"
                 android:contentDescription="Google Login" />
 
-
+            <!-- Spacing -->
             <View
                 android:layout_width="20dp"
                 android:layout_height="match_parent" />
 
-
+            <!-- Facebook Login Button -->
             <ImageView
                 android:id="@+id/facebookLoginImageView"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/google"
+                android:src="@drawable/facebook"
                 android:contentDescription="Facebook Login" />
         </LinearLayout>
+
     </RelativeLayout>
 </ScrollView>
