@@ -1,0 +1,67 @@
+package com.example.mindease;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class GroupChat extends AppCompatActivity {
+
+    private LinearLayout chatContainer;
+    private EditText messageInput;
+    private ImageView sendButton;
+    private ScrollView scrollViewChat;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_group_chat);
+
+        // Get group name from intent
+        String groupName = getIntent().getStringExtra("GROUP_NAME");
+        TextView headerChat = findViewById(R.id.headerTitle);
+        headerChat.setText(groupName != null ? groupName : "Group Chat");
+
+        chatContainer = findViewById(R.id.chatContainer);
+        messageInput = findViewById(R.id.messageInput);
+        sendButton = findViewById(R.id.sendButton);
+        scrollViewChat = findViewById(R.id.scrollViewChat);
+
+        // Example: Add an initial message from the therapist
+        addMessage("Therapist", "Hello, how are you feeling today?");
+
+        // Handle send button click
+        sendButton.setOnClickListener(v -> {
+            String message = messageInput.getText().toString().trim();
+            if (!message.isEmpty()) {
+                addMessage("You", message);
+                messageInput.setText("");
+                scrollToBottom();
+            } else {
+                Toast.makeText(GroupChat.this, "Please enter a message!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void addMessage(String sender, String message) {
+        // Dynamically create a TextView for the new message
+        TextView chatMessage = new TextView(this);
+        chatMessage.setText(sender + ": " + message);
+        chatMessage.setPadding(8, 8, 8, 8);
+        chatMessage.setBackgroundResource(R.drawable.chat_bubble); // Replace with your drawable for chat bubbles
+        chatMessage.setTextColor(getResources().getColor(android.R.color.black));
+
+        // Add to the chat container
+        chatContainer.addView(chatMessage);
+    }
+
+    private void scrollToBottom() {
+        // Ensure ScrollView scrolls to the bottom when a new message is added
+        scrollViewChat.post(() -> scrollViewChat.fullScroll(View.FOCUS_DOWN));
+    }
+}
