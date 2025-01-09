@@ -1,0 +1,34 @@
+package com.example.mindease;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Group extends AppCompatActivity {
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Set click listeners for group chats
+        findViewById(R.id.groupChat1).setOnClickListener(v -> openChat("Talk about Anxiety"));
+        findViewById(R.id.groupChat2).setOnClickListener(v -> openChat("Talk about Depression"));
+        // Repeat for other group chats...
+    }
+
+    private void openChat(String groupName) {
+        Intent intent = new Intent(this, Group.class);
+        intent.putExtra("GROUP_NAME", groupName);
+        startActivity(intent);
+    }
+}
