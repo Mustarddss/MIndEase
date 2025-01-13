@@ -1,0 +1,62 @@
+package com.example.mindease;
+
+import android.app.AlertDialog;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class UsersAccount extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_users_account);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        // Avatar selection
+        ImageView avatarImage = findViewById(R.id.avatar_image);
+        avatarImage.setOnClickListener(v -> showAvatarSelectionDialog());
+
+        // Button functionality
+        Button saveChangesButton = findViewById(R.id.button_save_changes);
+        Button quitTherapyButton = findViewById(R.id.button_quit_therapy);
+
+        saveChangesButton.setOnClickListener(v ->
+                Toast.makeText(this, "Changes saved successfully!", Toast.LENGTH_SHORT).show());
+
+        quitTherapyButton.setOnClickListener(v ->
+                Toast.makeText(this, "You have quit therapy.", Toast.LENGTH_SHORT).show());
+    }
+
+    private void showAvatarSelectionDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_avatar_selection, null);
+        builder.setView(dialogView);
+
+        // Example avatar click listener
+        ImageView avatar1 = dialogView.findViewById(R.id.avatar1);
+        avatar1.setOnClickListener(v -> {
+            ((ImageView) findViewById(R.id.avatar_image)).setImageResource(R.drawable.avatar1);
+            Toast.makeText(this, "Avatar updated!", Toast.LENGTH_SHORT).show();
+        });
+
+        builder.setCancelable(true);
+        builder.create().show();
+    }
+}
