@@ -1,0 +1,73 @@
+package com.example.me;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Button for "Talk about Anxiety"
+        Button joinAnxiety = findViewById(R.id.joinButton1);
+        joinAnxiety.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToChatActivity("ANXIETY");
+            }
+        });
+
+        // Button for "Talk about Depression"
+        Button joinDepression = findViewById(R.id.joinButton2);
+        joinDepression.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToChatActivity("DEPRESSION");
+            }
+        });
+
+        // Button for "Talk about Acad Issue"
+        Button joinAcadIssue = findViewById(R.id.joinButton3);
+        joinAcadIssue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToChatActivity("ACAD ISSUE");
+            }
+        });
+
+        // Button for "Talk about Work Issue"
+        Button joinWorkIssue = findViewById(R.id.joinButton4);
+        joinWorkIssue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToChatActivity("WORK ISSUE");
+            }
+        });
+
+        // Button for "Talk about Grief or Loss"
+        Button joinGriefLoss = findViewById(R.id.joinButton5);
+        joinGriefLoss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToChatActivity("GRIEF OR LOSS");
+            }
+        });
+    }
+
+    /**
+     * Navigates to the ChatActivity with the provided session title.
+     *
+     * @param sessionTitle The title of the session to display in ChatActivity.
+     */
+    private void navigateToChatActivity(String sessionTitle) {
+        Intent intent = new Intent(MainActivity.this, groupconvo.class);
+        intent.putExtra("SESSION_TITLE", sessionTitle); // Pass session title to ChatActivity
+        startActivity(intent);
+    }
+}
