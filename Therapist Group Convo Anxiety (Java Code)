@@ -1,0 +1,137 @@
+package com.example.me;
+
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class groupconvo extends AppCompatActivity {
+
+    private LinearLayout chatContainer;
+    private EditText messageInput;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_groupconvo);
+
+        // Initialize UI components
+        chatContainer = findViewById(R.id.chatContainer);
+        messageInput = findViewById(R.id.messageInput);
+        ImageView sendButton = findViewById(R.id.sendButton);
+        ImageView backArrow = findViewById(R.id.backArrow);
+
+        // Back Arrow click listener
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Close the activity
+            }
+        });
+
+        // Send Button click listener
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = messageInput.getText().toString().trim();
+                if (!message.isEmpty()) {
+                    addUserMessage("Me: " + message); // Add the user's message
+                    messageInput.setText(""); // Clear the input field
+                    simulateOtherUserResponse(); // Simulate a response from another participant
+                }
+            }
+        });
+
+        // Add an initial message from the therapist
+        addOtherUserMessage("Therapist (Dr. Mia): Hi everyone! What's been bothering you lately?", R.drawable.logo);
+    }
+
+    /**
+     * Adds the user's message to the chat container.
+     */
+    private void addUserMessage(String message) {
+        addMessageToChat(message, R.drawable.tiger, true); // User's icon and alignment
+    }
+
+    /**
+     * Adds a message from another participant (e.g., Therapist, Panda).
+     */
+    private void addOtherUserMessage(String message, int profileImageResId) {
+        addMessageToChat(message, profileImageResId, false); // Other user's icon and alignment
+    }
+
+    /**
+     * Adds a message to the chat container.
+     *
+     * @param message          The message text.
+     * @param profileImageResId The resource ID for the profile picture.
+     * @param isUser            Whether the message is from the user (true) or another participant (false).
+     */
+    private void addMessageToChat(String message, int profileImageResId, boolean isUser) {
+        LinearLayout messageLayout = new LinearLayout(this);
+        messageLayout.setOrientation(LinearLayout.HORIZONTAL);
+        messageLayout.setPadding(8, 8, 8, 8);
+
+        // Add profile picture if the message is from another participant
+        if (!isUser) {
+            ImageView profilePicture = new ImageView(this);
+            profilePicture.setImageResource(profileImageResId);
+            profilePicture.setLayoutParams(new LinearLayout.LayoutParams(80, 80));
+            messageLayout.addView(profilePicture);
+        }
+
+        // Message bubble
+        TextView messageView = new TextView(this);
+        messageView.setText(message);
+        messageView.setPadding(16, 12, 16, 12);
+        messageView.setBackground(getResources().getDrawable(R.drawable.message_bubble));
+        messageView.setTextColor(getResources().getColor(android.R.color.black));
+        LinearLayout.LayoutParams messageParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        messageParams.setMargins(8, 8, 8, 8);
+
+        // Align user messages to the right
+        if (isUser) {
+            messageParams.gravity = View.TEXT_ALIGNMENT_TEXT_END;
+        }
+
+        messageView.setLayoutParams(messageParams);
+        messageLayout.addView(messageView);
+
+        // Add the profile picture after the message for the user
+        if (isUser) {
+            ImageView profilePicture = new ImageView(this);
+            profilePicture.setImageResource(profileImageResId);
+            profilePicture.setLayoutParams(new LinearLayout.LayoutParams(80, 80));
+            messageLayout.addView(profilePicture);
+        }
+
+        chatContainer.addView(messageLayout);
+
+        // Scroll to the bottom of the chat
+        chatContainer.post(() -> chatContainer.scrollTo(0, chatContainer.getBottom()));
+    }
+
+    /**
+     * Simulates a response from another participant.
+     */
+    private void simulateOtherUserResponse() {
+        // Use a delay to simulate typing or response time
+        new Handler().postDelayed(() -> {
+            // Randomly choose a participant to respond
+            int randomParticipant = (int) (Math.random() * 2); // 0 for Therapist, 1 for Panda
+            if (randomParticipant == 0) {
+                addOtherUserMessage("Therapist (Dr. Mia): That sounds tough. Have you tried deep breathing exercises?", R.drawable.logo);
+            } else {
+                addOtherUserMessage("Panda: I make a to-do list before bed; it helps me feel more in control.", R.drawable.panda);
+            }
+        }, 2000); // 2-second delay
+    }
+}
