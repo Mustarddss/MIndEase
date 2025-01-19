@@ -57,14 +57,16 @@ public class SignIn extends AppCompatActivity {
                     isValid = false;
                 }
 
+                if (isValid) {
+                    // Add your login logic here
+                }
             }
         });
     }
 
     // Helper method to validate email
     private boolean isValidEmail(String email) {
-        // Check if the email matches a basic pattern and ends with valid domains
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches() &&
-                (email.endsWith("@gmail.com") || email.endsWith("@yahoo.com"));
+        // Use Android's built-in EMAIL_ADDRESS pattern for validation
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }
