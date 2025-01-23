@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.regex.Pattern;
+
 public class SignIn extends AppCompatActivity {
 
     @Override
@@ -58,7 +60,11 @@ public class SignIn extends AppCompatActivity {
                 }
 
                 if (isValid) {
-                    // Add your login logic here
+                    // Navigate to the LoadingActivity
+                    Intent intent = new Intent(SignIn.this, Loading.class);
+                    startActivity(intent);
+
+                    finish();
                 }
             }
         });
@@ -66,7 +72,10 @@ public class SignIn extends AppCompatActivity {
 
     // Helper method to validate email
     private boolean isValidEmail(String email) {
-        // Use Android's built-in EMAIL_ADDRESS pattern for validation
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        // Custom regex for additional patterns "@." or "@.s"
+        String additionalPatterns = ".*@\\.$|.*@\\.s$";
+
+        // Check if email matches Android's EMAIL_ADDRESS pattern or additional patterns
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches() || Pattern.matches(additionalPatterns, email);
     }
 }
