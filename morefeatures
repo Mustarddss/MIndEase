@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#223C3F">
 
+    <!-- Title Container -->
     <LinearLayout
         android:id="@+id/title_container"
         android:layout_width="match_parent"
@@ -23,6 +24,7 @@
             android:textColor="#000000" />
     </LinearLayout>
 
+    <!-- Scrollable Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,7 +37,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
+            <!-- Account Section -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,9 +54,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Subscription"
-                android:backgroundTint="#004F4F"
                 android:textColor="#FFFFFF"
                 android:layout_marginBottom="12dp"
+                android:padding="16dp"
+                android:background="@drawable/rounded_button" />
+
+            <Button
+                android:id="@+id/buttonMyTherapist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Therapist"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="10dp"
                 android:padding="16dp"
                 android:background="@drawable/rounded_button" />
 
@@ -63,13 +74,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="My Account"
-                android:backgroundTint="#004F4F"
                 android:textColor="#FFFFFF"
                 android:layout_marginBottom="20dp"
                 android:padding="16dp"
                 android:background="@drawable/rounded_button" />
 
 
+            <!-- Support Section -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,7 +97,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="FAQ"
-                android:backgroundTint="#004F4F"
                 android:textColor="#FFFFFF"
                 android:layout_marginBottom="12dp"
                 android:padding="16dp"
@@ -96,8 +106,7 @@
                 android:id="@+id/button_contact_us"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contact us"
-                android:backgroundTint="#004F4F"
+                android:text="Contact Us"
                 android:textColor="#FFFFFF"
                 android:layout_marginBottom="12dp"
                 android:padding="16dp"
@@ -107,8 +116,7 @@
                 android:id="@+id/button_terms_conditions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Terms and condition"
-                android:backgroundTint="#004F4F"
+                android:text="Terms and Conditions"
                 android:textColor="#FFFFFF"
                 android:layout_marginBottom="12dp"
                 android:padding="16dp"
@@ -118,13 +126,11 @@
                 android:id="@+id/button_privacy_policy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Privacy and Policy"
-                android:backgroundTint="#004F4F"
+                android:text="Privacy Policy"
                 android:textColor="#FFFFFF"
                 android:layout_marginBottom="24dp"
                 android:padding="16dp"
                 android:background="@drawable/rounded_button" />
-
 
             <Button
                 android:id="@+id/button_logout"
@@ -134,55 +140,114 @@
                 android:textColor="#FFFFFF"
                 android:layout_marginBottom="24dp"
                 android:padding="16dp"
-                android:background="@drawable/red_button"
-                style="?android:attr/buttonStyle" />
+                android:background="@drawable/red_button" />
         </LinearLayout>
     </ScrollView>
 
-
+    <!-- Bottom Navigation -->
     <LinearLayout
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
         android:orientation="horizontal"
-        android:weightSum="4">
+        android:padding="8dp">
 
-        <ImageView
+        <!-- Home Icon -->
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/mess"
-            android:contentDescription="Home"
-            android:padding="8dp"
-            android:layout_gravity="center" />
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/calendar"
-            android:contentDescription="Schedule"
-            android:padding="8dp"
-            android:layout_gravity="center" />
+            <ImageView
+                android:id="@+id/iconHome"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/mess"
+                android:contentDescription="Home" />
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/group"
-            android:contentDescription="Community"
-            android:padding="8dp"
-            android:layout_gravity="center" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="12sp"
+                android:textColor="#000000"
+                android:gravity="center" />
+        </LinearLayout>
 
-        <ImageView
+        <!-- Schedule Icon -->
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/settings"
-            android:contentDescription="More"
-            android:padding="8dp"
-            android:layout_gravity="center" />
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iconSchedule"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/calendar"
+                android:contentDescription="Schedule" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Schedule"
+                android:textSize="12sp"
+                android:textColor="#000000"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <!-- Community Icon -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iconCommunity"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/group"
+                android:contentDescription="Community" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Community"
+                android:textSize="12sp"
+                android:textColor="#000000"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <!-- More Icon -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iconMore"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/settings"
+                android:contentDescription="More" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="More"
+                android:textSize="12sp"
+                android:textColor="#000000"
+                android:gravity="center" />
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
