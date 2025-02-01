@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,32 +24,70 @@ public class yourtherapist extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_yourtherapist);
 
-            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        
+        // Initialize views
         Button submitReviewButton = findViewById(R.id.button_submit_review);
         RatingBar ratingBar = findViewById(R.id.rating_bar);
         EditText reviewEditText = findViewById(R.id.edit_text_review);
+        LinearLayout reviewsContainer = findViewById(R.id.reviews_container); // Dynamic review container
 
-        
+        // Handle Submit button click
         submitReviewButton.setOnClickListener(v -> {
             float rating = ratingBar.getRating();
             String review = reviewEditText.getText().toString();
 
             if (rating == 0 || review.isEmpty()) {
+                // Show a message if rating or review is missing
                 Toast.makeText(this, "Please provide a rating and review", Toast.LENGTH_SHORT).show();
             } else {
-               
+                // Add the review dynamically to the layout
+                addReviewToLayout(rating, review, reviewsContainer);
+
+                // Show success message
                 Toast.makeText(this, "Review submitted successfully!", Toast.LENGTH_SHORT).show();
 
-                
+                // Clear the input fields
                 ratingBar.setRating(0);
                 reviewEditText.setText("");
             }
         });
+    }
+
+    // Method to dynamically add the review to the layout
+    private void addReviewToLayout(float rating, String review, LinearLayout reviewsContainer) {
+        // Create a container for each review
+        LinearLayout reviewLayout = new LinearLayout(this);
+        reviewLayout.setOrientation(LinearLayout.VERTICAL);
+        reviewLayout.setPadding(8, 8, 8, 8);
+
+        // Create a TextView for the rating (stars)
+        TextView ratingTextView = new TextView(this);
+        StringBuilder stars = new StringBuilder();
+        for (int i = 0; i < (int) rating; i++) {
+            stars.append("⭐"); // Add one star for each rating point
+        }
+        ratingTextView.setText(stars.toString());
+        ratingTextView.setTextSize(16f);
+        ratingTextView.setTextColor(getResources().getColor(android.R.color.holo_orange_light));
+        ratingTextView.setPadding(0, 0, 0, 8);
+
+        // Create a TextView for the review text
+        TextView reviewTextView = new TextView(this);
+        reviewTextView.setText(review);
+        reviewTextView.setTextSize(14f);
+        reviewTextView.setTextColor(getResources().getColor(android.R.color.white));
+        reviewTextView.setPadding(0, 0, 0, 16);
+
+        // Add rating and review text to the review container
+        reviewLayout.addView(ratingTextView);
+        reviewLayout.addView(reviewTextView);
+
+        // Add the review container to the reviews section
+        reviewsContainer.addView(reviewLayout);
     }
 }
