@@ -1,5 +1,6 @@
 package com.example.mindease;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -23,6 +24,7 @@ public class SignIn extends AppCompatActivity {
         // Find views by their IDs
         TextView signUpTextView = findViewById(R.id.signupTextView);
         Button signInButton = findViewById(R.id.signInButton);
+        TextView therapistLoginButton = findViewById(R.id.therapistLogin);
         EditText emailEditText = findViewById(R.id.emailEditText);
         EditText passwordEditText = findViewById(R.id.passwordEditText);
 
@@ -68,14 +70,27 @@ public class SignIn extends AppCompatActivity {
                 }
             }
         });
+
+        therapistLoginButton.setClickable(true);
+        therapistLoginButton.setFocusable(true);
+        therapistLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignIn.this, HomeDoctors.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     // Helper method to validate email
     private boolean isValidEmail(String email) {
         // Custom regex for additional patterns "@." or "@.s"
+
         String additionalPatterns = ".*@\\.$|.*@\\.s$";
 
         // Check if email matches Android's EMAIL_ADDRESS pattern or additional patterns
         return Patterns.EMAIL_ADDRESS.matcher(email).matches() || Pattern.matches(additionalPatterns, email);
     }
 }
+
