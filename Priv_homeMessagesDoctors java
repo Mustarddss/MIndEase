@@ -1,0 +1,45 @@
+package com.example.mindease;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class PrivHomeMessDoctor extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_priv_home_mess_doctor);
+
+        // Handling edge-to-edge insets
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        // Find buttons by ID
+        ImageView calendarButton = findViewById(R.id.calendarButton);
+        ImageView groupButton = findViewById(R.id.groupButton);
+
+        // Set click listener for calendarButton to go to doctor_sched
+        calendarButton.setOnClickListener(v -> {
+            Intent intent = new Intent(PrivHomeMessDoctor.this, doctor_sched.class);
+            startActivity(intent);
+        });
+
+        // Set click listener for groupButton to go to therapist_group
+        groupButton.setOnClickListener(v -> {
+            Intent intent = new Intent(PrivHomeMessDoctor.this, TherapistGroup.class);
+            startActivity(intent);
+        });
+    }
+}
