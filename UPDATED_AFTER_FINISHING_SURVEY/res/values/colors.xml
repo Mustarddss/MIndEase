@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="dark_green">#0F3D3E</color> <!-- Background color -->
+    <color name="white">#FFFFFF</color> <!-- Text and buttons -->
+    <color name="black">#000000</color> <!-- Text color -->
+    <color name="green">#2EB872</color> <!-- Therapist name text -->
+    <color name="red">#D32F2F</color> <!-- Urgent tag color -->
+
+    <!-- Button and UI Elements -->
+    <color name="button_background">#124B4A</color> <!-- Button background -->
+    <color name="button_text">#FFFFFF</color> <!-- Button text -->
+
+    <!-- Calendar & Chat UI -->
+    <color name="calendar_selected">#2EB872</color> <!-- Selected date in calendar -->
+    <color name="calendar_unavailable">#D32F2F</color> <!-- Unavailable dates -->
+    <color name="chat_bubble">#1A4D4A</color> <!-- Chat message background -->
+
+    <!-- Navigation Bar -->
+    <color name="nav_background">#000000</color> <!-- Bottom navigation bar -->
+    <color name="nav_icon">#FFFFFF</color> <!-- Icons in the bottom bar -->
+
+    <!-- Others -->
+    <color name="text_hint">#B0BEC5</color> <!-- Text hint color -->
+</resources>
