@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:orientation="horizontal"
+    android:background="#FFFFFF"
+    android:gravity="center"
+    android:layout_gravity="bottom">
+
+    <!-- Chat Icon -->
+    <ImageView
+        android:id="@+id/nav_chat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_chat"
+        android:contentDescription="Chat Icon"
+        android:padding="8dp"/>
+
+    <!-- Calendar Icon -->
+    <ImageView
+        android:id="@+id/nav_calendar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_calendar"
+        android:contentDescription="Calendar Icon"
+        android:padding="8dp"/>
+
+    <!-- Group Icon -->
+    <ImageView
+        android:id="@+id/nav_group"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_group"
+        android:contentDescription="Group Icon"
+        android:padding="8dp"/>
+
+    <!-- More Features Icon -->
+    <ImageView
+        android:id="@+id/nav_more"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_more"
+        android:contentDescription="More Features Icon"
+        android:padding="8dp"/>
+</LinearLayout>

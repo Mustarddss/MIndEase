@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#223C3F">
+
+    <LinearLayout
+        android:id="@+id/title_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:padding="20dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/text_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MORE FEATURES"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_container"
+        android:padding="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ACCOUNT"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="#004F4F"
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:padding="12dp"
+                android:layout_marginBottom="15dp" />
+
+            <Button
+                android:id="@+id/button_subscription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Subscription"
+                android:backgroundTint="#004F4F"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="12dp"
+                android:padding="16dp"/>
+            <Button
+                android:id="@+id/your_therapist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#004F4F"
+                android:text="Your Therapist"
+                android:textColor="#FFFFFF"
+                android:padding="16dp"
+                android:layout_marginBottom="12dp"/>
+
+
+            <Button
+                android:id="@+id/button_my_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Account"
+                android:backgroundTint="#004F4F"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="20dp"
+                android:padding="16dp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SUPPORT"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="#004F4F"
+                android:gravity="center"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/button_faq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FAQ"
+                android:backgroundTint="#004F4F"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="12dp"
+                android:padding="16dp"/>
+
+            <Button
+                android:id="@+id/button_contact_us"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contact us"
+                android:backgroundTint="#004F4F"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="12dp"
+                android:padding="16dp"/>
+
+            <Button
+                android:id="@+id/button_terms_conditions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Terms and condition"
+                android:backgroundTint="#004F4F"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="12dp"
+                android:padding="16dp"/>
+
+            <Button
+                android:id="@+id/button_privacy_policy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Privacy and Policy"
+                android:backgroundTint="#004F4F"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="24dp"
+                android:padding="16dp"/>
+
+            <Button
+                android:id="@+id/button_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Log Out"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="24dp"
+                android:padding="16dp"
+                style="?android:attr/buttonStyle" />
+
+
+            <include layout="@layout/bottom_navigation"/>
+    </LinearLayout>
+</RelativeLayout>
+
+
+
