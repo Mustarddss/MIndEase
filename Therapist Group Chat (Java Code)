@@ -1,73 +1,76 @@
-package com.example.me;
+package com.example.mindease;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.ImageView;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class TherapistGroup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_therapist_group); // Ensure this matches your XML layout file
 
         // Button for "Talk about Anxiety"
         Button joinAnxiety = findViewById(R.id.joinButton1);
-        joinAnxiety.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToChatActivity("ANXIETY");
-            }
-        });
+        if (joinAnxiety != null) {
+            joinAnxiety.setOnClickListener(v -> navigateToChatActivity("ANXIETY"));
+        }
 
         // Button for "Talk about Depression"
         Button joinDepression = findViewById(R.id.joinButton2);
-        joinDepression.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToChatActivity("DEPRESSION");
-            }
-        });
+        if (joinDepression != null) {
+            joinDepression.setOnClickListener(v -> navigateToChatActivity("DEPRESSION"));
+        }
 
         // Button for "Talk about Acad Issue"
         Button joinAcadIssue = findViewById(R.id.joinButton3);
-        joinAcadIssue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToChatActivity("ACAD ISSUE");
-            }
-        });
+        if (joinAcadIssue != null) {
+            joinAcadIssue.setOnClickListener(v -> navigateToChatActivity("ACAD ISSUE"));
+        }
 
         // Button for "Talk about Work Issue"
         Button joinWorkIssue = findViewById(R.id.joinButton4);
-        joinWorkIssue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToChatActivity("WORK ISSUE");
-            }
-        });
+        if (joinWorkIssue != null) {
+            joinWorkIssue.setOnClickListener(v -> navigateToChatActivity("WORK ISSUE"));
+        }
 
         // Button for "Talk about Grief or Loss"
         Button joinGriefLoss = findViewById(R.id.joinButton5);
-        joinGriefLoss.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToChatActivity("GRIEF OR LOSS");
-            }
-        });
+        if (joinGriefLoss != null) {
+            joinGriefLoss.setOnClickListener(v -> navigateToChatActivity("GRIEF OR LOSS"));
+        }
+
+        // Home Icon - Navigates to PrivHomeMessDoctor
+        ImageView iconHome = findViewById(R.id.iconHome);
+        if (iconHome != null) {
+            iconHome.setOnClickListener(v -> {
+                Intent intent = new Intent(TherapistGroup.this, PrivHomeMessDoctor.class);
+                startActivity(intent);
+            });
+        }
+
+        // Calendar Icon - Navigates to DoctorSched
+        ImageView iconCalendar = findViewById(R.id.iconCalendar);
+        if (iconCalendar != null) {
+            iconCalendar.setOnClickListener(v -> {
+                Intent intent = new Intent(TherapistGroup.this, doctor_sched.class);
+                startActivity(intent);
+            });
+        }
     }
 
     /**
-     * Navigates to the ChatActivity with the provided session title.
+     * Navigates to the GroupChat activity with the provided session title.
      *
-     * @param sessionTitle The title of the session to display in ChatActivity.
+     * @param sessionTitle The title of the session to display in GroupChat.
      */
     private void navigateToChatActivity(String sessionTitle) {
-        Intent intent = new Intent(MainActivity.this, groupconvo.class);
-        intent.putExtra("SESSION_TITLE", sessionTitle); // Pass session title to ChatActivity
+        Intent intent = new Intent(TherapistGroup.this, GroupChat.class);
+        intent.putExtra("SESSION_TITLE", sessionTitle); // Pass session title to GroupChat activity
         startActivity(intent);
     }
 }
